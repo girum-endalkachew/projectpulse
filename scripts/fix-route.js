@@ -1,4 +1,7 @@
-import { NextResponse } from "next/server";
+const fs = require('fs');
+const path = require('path');
+
+const routeContent = `import { NextResponse } from "next/server";
 import { getProjectById, updateProject, deleteProject } from "@/lib/projects-store";
 
 export async function GET(
@@ -41,3 +44,7 @@ export async function DELETE(
   }
   return NextResponse.json({ success: true, message: "Project deleted successfully" });
 }
+`;
+
+fs.writeFileSync(path.join(__dirname, '../src/app/api/v1/projects/[id]/route.ts'), routeContent.trim(), 'utf8');
+console.log("Successfully updated API route for Next.js 15+ async params!");
