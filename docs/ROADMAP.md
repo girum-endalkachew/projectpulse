@@ -3,9 +3,9 @@
 | Phase | Build | Status |
 | :--- | :--- | :--- |
 | **0** | Architecture + product specification | **COMPLETED** |
-| **1** | **Design system + app foundation** | **COMPLETED** |
-| **2** | Landing page + authentication | UP NEXT |
-| **3** | Projects + main dashboard | UPCOMING |
+| **1** | Design system + app foundation | **COMPLETED** |
+| **2** | **Landing page + authentication** | **COMPLETED** |
+| **3** | Projects + main dashboard | UP NEXT |
 | **4** | Telemetry + analytics | UPCOMING |
 | **5** | Health monitoring + incidents | UPCOMING |
 | **6** | Error tracking + deployments | UPCOMING |
