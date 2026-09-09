@@ -1,32 +1,25 @@
 "use client";
 
 import Link from "next/link";
-import { Terminal, Activity, ShieldAlert, Sparkles, Zap, ArrowRight, Layers, Globe, CheckCircle2, Lock } from "lucide-react";
-import { StatusIndicator } from "@/components/ui/StatusIndicator";
-import { GlassCard } from "@/components/ui/GlassCard";
+import { Terminal, ArrowRight, Sparkles, Activity, ShieldCheck, Zap, Globe, Layers } from "lucide-react";
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-[#0B0C10] text-gray-100 flex flex-col relative selection:bg-indigo-500 selection:text-white overflow-hidden">
-      {/* Background Glow Orbs */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-b from-indigo-600/15 via-purple-600/10 to-transparent rounded-full blur-[140px] pointer-events-none"></div>
-      <div className="absolute top-[600px] -left-40 w-[500px] h-[500px] bg-cyan-600/10 rounded-full blur-[160px] pointer-events-none"></div>
+    <div className="min-h-screen bg-[#08080a] text-gray-100 flex flex-col relative selection:bg-indigo-500 selection:text-white overflow-hidden">
+      {/* Background Studio Lighting */}
+      <div 
+        className="fixed top-[-10%] left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full blur-[140px] pointer-events-none"
+        style={{ background: "radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(168, 85, 247, 0.08) 50%, transparent 100%)" }}
+      ></div>
 
-      {/* Navigation Topbar */}
-      <header className="h-20 border-b border-white/10 backdrop-blur-xl bg-black/30 sticky top-0 z-50 flex items-center justify-between px-6 lg:px-16">
+      {/* Top Bar */}
+      <header className="h-20 border-b border-white/10 backdrop-blur-xl bg-black/40 sticky top-0 z-50 flex items-center justify-between px-6 lg:px-16">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-2xl bg-indigo-600/30 border border-indigo-500/40 flex items-center justify-center shadow-[0_0_20px_rgba(99,102,241,0.3)]">
-            <Terminal className="w-5 h-5 text-indigo-400" />
+          <div className="w-10 h-10 rounded-2xl bg-indigo-600/30 border border-indigo-500/40 flex items-center justify-center text-indigo-400 shadow-lg">
+            <Terminal className="w-5 h-5" />
           </div>
           <span className="font-extrabold tracking-wider text-white text-lg">PROJECTPULSE</span>
         </div>
-
-        <nav className="hidden md:flex items-center gap-8 text-xs font-medium text-gray-300">
-          <a href="#features" className="hover:text-white transition-colors">Features</a>
-          <a href="#architecture" className="hover:text-white transition-colors">Architecture</a>
-          <a href="#projects" className="hover:text-white transition-colors">Monitored Apps</a>
-          <a href="#sdk" className="hover:text-white transition-colors">Developer SDK</a>
-        </nav>
 
         <div className="flex items-center gap-4">
           <Link href="/login" className="text-xs font-semibold text-gray-300 hover:text-white px-3 py-2 transition-colors">
@@ -34,16 +27,16 @@ export default function LandingPage() {
           </Link>
           <Link
             href="/app/dashboard"
-            className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow-[0_0_25px_rgba(99,102,241,0.35)] border border-indigo-400/30 transition-all"
+            className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold px-5 py-2.5 rounded-xl shadow-lg border border-indigo-400/30 transition-all"
           >
             Launch Command Center <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
       </header>
 
-      {/* Hero Section */}
+      {/* Hero */}
       <section className="pt-20 pb-16 px-6 lg:px-16 text-center max-w-5xl mx-auto relative z-10">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-panel-1 border border-indigo-500/30 text-indigo-300 text-xs font-semibold mb-8 shadow-[0_0_20px_rgba(99,102,241,0.15)]">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-pill text-indigo-300 text-xs font-semibold mb-8 border border-white/10">
           <Sparkles className="w-3.5 h-3.5 text-amber-400" /> Developer Observability Platform v1.0
         </div>
 
@@ -54,27 +47,27 @@ export default function LandingPage() {
           </span>
         </h1>
 
-        <p className="text-sm sm:text-base text-gray-300 max-w-2xl mx-auto leading-relaxed mb-10">
-          ProjectPulse monitors project health, active users, uptime, exceptions, and deployments across all your applications in a high-craft dark glassmorphism workspace.
+        <p className="text-sm sm:text-base text-gray-400 max-w-2xl mx-auto leading-relaxed mb-10">
+          ProjectPulse unifies project health, uptime monitoring, latency analytics, error tracking, and AI insights across all your production applications.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
           <Link
             href="/app/dashboard"
-            className="w-full sm:w-auto flex items-center justify-center gap-2.5 bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-bold px-8 py-3.5 rounded-2xl shadow-[0_0_30px_rgba(99,102,241,0.4)] border border-indigo-400/40 transition-all"
+            className="w-full sm:w-auto flex items-center justify-center gap-2.5 bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-bold px-8 py-3.5 rounded-2xl shadow-xl border border-indigo-400/40 transition-all"
           >
             Open Live Dashboard <ArrowRight className="w-4 h-4" />
           </Link>
           <Link
             href="/register"
-            className="w-full sm:w-auto flex items-center justify-center gap-2 glass-panel-2 hover:bg-white/10 text-white text-sm font-semibold px-8 py-3.5 rounded-2xl border border-white/10 transition-all"
+            className="w-full sm:w-auto flex items-center justify-center gap-2 glass-pill hover:bg-white/10 text-white text-sm font-semibold px-8 py-3.5 rounded-2xl transition-all"
           >
             Create Account
           </Link>
         </div>
 
-        {/* Hero Command Center Glass Preview */}
-        <div className="glass-panel-3 rounded-3xl p-4 sm:p-6 border border-white/20 shadow-[0_30px_100px_rgba(0,0,0,0.8)] text-left relative overflow-hidden group">
+        {/* Hero Preview Card */}
+        <div className="glass-workspace rounded-[2.5rem] p-6 text-left relative overflow-hidden">
           <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-6">
             <div className="flex items-center gap-2">
               <span className="w-3 h-3 rounded-full bg-rose-500/80"></span>
@@ -82,116 +75,58 @@ export default function LandingPage() {
               <span className="w-3 h-3 rounded-full bg-emerald-500/80"></span>
               <span className="text-xs text-gray-400 ml-2 font-mono">projectpulse.dev / command-center</span>
             </div>
-            <StatusIndicator status="operational" />
+            <span className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+              ? All Systems Operational
+            </span>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-            <div className="glass-panel-1 p-4 rounded-2xl">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <div className="glass-panel p-4 rounded-2xl">
               <p className="text-[10px] text-gray-400 uppercase font-semibold">Active Apps</p>
-              <p className="text-xl font-bold text-white">4 Managed Projects</p>
+              <p className="text-xl font-bold text-white mt-1">4 Managed</p>
             </div>
-            <div className="glass-panel-1 p-4 rounded-2xl">
+            <div className="glass-panel p-4 rounded-2xl">
               <p className="text-[10px] text-gray-400 uppercase font-semibold">Global Uptime</p>
-              <p className="text-xl font-bold text-emerald-400">99.98%</p>
+              <p className="text-xl font-bold text-emerald-400 mt-1">99.98%</p>
             </div>
-            <div className="glass-panel-1 p-4 rounded-2xl">
+            <div className="glass-panel p-4 rounded-2xl">
               <p className="text-[10px] text-gray-400 uppercase font-semibold">Live Users</p>
-              <p className="text-xl font-bold text-cyan-300">4,688 Active</p>
+              <p className="text-xl font-bold text-cyan-300 mt-1">4,688 Active</p>
             </div>
-            <div className="glass-panel-1 p-4 rounded-2xl">
+            <div className="glass-panel p-4 rounded-2xl">
               <p className="text-[10px] text-gray-400 uppercase font-semibold">Avg Latency</p>
-              <p className="text-xl font-bold text-indigo-300">32ms Baseline</p>
+              <p className="text-xl font-bold text-indigo-300 mt-1">32ms Baseline</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Monitored Portfolio Strip */}
-      <section id="projects" className="py-12 border-y border-white/10 bg-white/[0.01]">
+      {/* Monitored Products Strip */}
+      <section className="py-12 border-y border-white/10 bg-white/[0.01]">
         <div className="max-w-6xl mx-auto px-6 text-center">
-          <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-6">
-            Unified Observability Across Active Production Products
+          <p className="text-xs font-semibold text-gray-500 uppercase tracking-widest mb-6">
+            Monitored Applications Ecosystem
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-12">
-            <span className="text-sm font-bold text-gray-300 flex items-center gap-2">
+          <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-12">
+            <span className="text-xs font-bold text-gray-300 flex items-center gap-2">
               <span className="w-2.5 h-2.5 rounded-full bg-blue-500"></span> ACA Academy
             </span>
-            <span className="text-sm font-bold text-gray-300 flex items-center gap-2">
+            <span className="text-xs font-bold text-gray-300 flex items-center gap-2">
               <span className="w-2.5 h-2.5 rounded-full bg-pink-500"></span> Sift Platform
             </span>
-            <span className="text-sm font-bold text-gray-300 flex items-center gap-2">
+            <span className="text-xs font-bold text-gray-300 flex items-center gap-2">
               <span className="w-2.5 h-2.5 rounded-full bg-purple-500"></span> ExamGuard
             </span>
-            <span className="text-sm font-bold text-gray-300 flex items-center gap-2">
+            <span className="text-xs font-bold text-gray-300 flex items-center gap-2">
               <span className="w-2.5 h-2.5 rounded-full bg-cyan-500"></span> Focus OS
             </span>
           </div>
         </div>
       </section>
 
-      {/* Bento Grid Feature Section */}
-      <section id="features" className="py-24 px-6 lg:px-16 max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4">
-            Built for developers who maintain multiple apps.
-          </h2>
-          <p className="text-xs sm:text-sm text-gray-400 max-w-xl mx-auto">
-            Stop checking 10 separate dashboards. ProjectPulse gives you one glass command center.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <GlassCard level={2} className="md:col-span-2">
-            <div className="p-2 w-10 h-10 rounded-2xl bg-indigo-500/20 text-indigo-400 mb-4 border border-indigo-500/30">
-              <Activity className="w-6 h-6" />
-            </div>
-            <h3 className="text-lg font-bold text-white mb-2">Isolated Telemetry & Health Monitoring</h3>
-            <p className="text-xs text-gray-400 leading-relaxed mb-4">
-              Every project receives its own isolated telemetry channel. Track uptime, HTTP ping health, latency spikes, and SSL certificate renewals automatically.
-            </p>
-          </GlassCard>
-
-          <GlassCard level={2}>
-            <div className="p-2 w-10 h-10 rounded-2xl bg-pink-500/20 text-pink-400 mb-4 border border-pink-500/30">
-              <ShieldAlert className="w-6 h-6" />
-            </div>
-            <h3 className="text-lg font-bold text-white mb-2">Error Grouping</h3>
-            <p className="text-xs text-gray-400 leading-relaxed">
-              Capture stack traces and group recurring exceptions with affected user counts.
-            </p>
-          </GlassCard>
-
-          <GlassCard level={2}>
-            <div className="p-2 w-10 h-10 rounded-2xl bg-cyan-500/20 text-cyan-400 mb-4 border border-cyan-500/30">
-              <Sparkles className="w-6 h-6" />
-            </div>
-            <h3 className="text-lg font-bold text-white mb-2">Data-Grounded AI Copilot</h3>
-            <p className="text-xs text-gray-400 leading-relaxed">
-              Ask natural language questions. The AI uses deterministic functions on PostgreSQL data without hallucinating metrics.
-            </p>
-          </GlassCard>
-
-          <GlassCard level={2} className="md:col-span-2">
-            <div className="p-2 w-10 h-10 rounded-2xl bg-purple-500/20 text-purple-400 mb-4 border border-purple-500/30">
-              <Zap className="w-6 h-6" />
-            </div>
-            <h3 className="text-lg font-bold text-white mb-2">Signature &quot;Attention Required&quot; Engine</h3>
-            <p className="text-xs text-gray-400 leading-relaxed">
-              Automatically ranks critical issues, memory leaks, high latencies, and stale deployments across all projects into a single prioritized queue.
-            </p>
-          </GlassCard>
-        </div>
-      </section>
-
       {/* Footer */}
-      <footer className="mt-auto border-t border-white/10 py-10 px-6 lg:px-16 glass-panel-1">
-        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400">
-          <div className="flex items-center gap-2">
-            <Terminal className="w-4 h-4 text-indigo-400" />
-            <span className="font-bold text-white">ProjectPulse</span> � Built by Girum Endalkachew
-          </div>
-          <p>� {new Date().getFullYear()} ProjectPulse. All rights reserved.</p>
-        </div>
+      <footer className="mt-auto border-t border-white/10 py-8 px-6 text-center text-xs text-gray-500">
+        ProjectPulse � Built by Girum Endalkachew
       </footer>
     </div>
   );
