@@ -11,21 +11,22 @@ function ensureDir(filePath) {
 const files = {
   "docs/ROADMAP.md": `# ProjectPulse — 10-Phase Master Roadmap
 
-- [x] **Phase 0**: Architecture + product specification
-- [x] **Phase 1**: Design system + app foundation
-- [ ] **Phase 2**: Landing page + authentication
-- [ ] **Phase 3**: Projects + main dashboard
-- [ ] **Phase 4**: Telemetry + analytics
-- [ ] **Phase 5**: Health monitoring + incidents
-- [ ] **Phase 6**: Error tracking + deployments
-- [ ] **Phase 7**: SDK + integrations
-- [ ] **Phase 8**: Tasks + releases + ideas
-- [ ] **Phase 9**: AI Copilot + AI insights
-- [ ] **Phase 10**: Security, performance, polish + production
+| Phase | Build | Status |
+| :--- | :--- | :--- |
+| **0** | Architecture + product specification | **COMPLETED** |
+| **1** | **Design system + app foundation** | **COMPLETED** |
+| **2** | Landing page + authentication | UP NEXT |
+| **3** | Projects + main dashboard | UPCOMING |
+| **4** | Telemetry + analytics | UPCOMING |
+| **5** | Health monitoring + incidents | UPCOMING |
+| **6** | Error tracking + deployments | UPCOMING |
+| **7** | SDK + integrations | UPCOMING |
+| **8** | Tasks + releases + ideas | UPCOMING |
+| **9** | AI Copilot + AI insights | UPCOMING |
+| **10** | Security, performance, polish + production | UPCOMING |
 `,
 
-  "src/components/ui/GlassCard.tsx": `
-import React from "react";
+  "src/components/ui/GlassCard.tsx": `import React from "react";
 
 interface GlassCardProps extends React.HTMLAttributes<HTMLDivElement> {
   level?: 1 | 2 | 3 | 4;
@@ -54,7 +55,7 @@ export function GlassCard({
 
   return (
     <div
-      className={\`\${levelStyles[level]} \${glowStyle} rounded-3xl p-6 relative overflow-hidden \${className}\`}
+      className={levelStyles[level] + " " + glowStyle + " rounded-3xl p-6 relative overflow-hidden " + className}
       {...props}
     >
       {children}
@@ -63,8 +64,7 @@ export function GlassCard({
 }
 `,
 
-  "src/components/ui/StatusIndicator.tsx": `
-import React from "react";
+  "src/components/ui/StatusIndicator.tsx": `import React from "react";
 
 export type StatusType = "operational" | "degraded" | "warning" | "down" | "unknown";
 
@@ -117,19 +117,18 @@ export function StatusIndicator({ status, showLabel = true, size = "md" }: Statu
   const dotSize = size === "sm" ? "w-1.5 h-1.5" : "w-2 h-2";
 
   return (
-    <div className={\`inline-flex items-center gap-2 px-2.5 py-1 rounded-full border \${curr.bg} \${curr.border}\`}>
+    <div className={"inline-flex items-center gap-2 px-2.5 py-1 rounded-full border " + curr.bg + " " + curr.border}>
       <span className="relative flex h-2 w-2">
-        <span className={\`animate-ping absolute inline-flex h-full w-full rounded-full \${curr.color} opacity-75\`}></span>
-        <span className={\`relative inline-flex rounded-full \${dotSize} \${curr.color}\`}></span>
+        <span className={"animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 " + curr.color}></span>
+        <span className={"relative inline-flex rounded-full " + dotSize + " " + curr.color}></span>
       </span>
-      {showLabel && <span className={\`text-[11px] font-semibold tracking-wide \${curr.text}\`}>{curr.label}</span>}
+      {showLabel && <span className={"text-[11px] font-semibold tracking-wide " + curr.text}>{curr.label}</span>}
     </div>
   );
 }
 `,
 
-  "src/components/ui/Sparkline.tsx": `
-import React from "react";
+  "src/components/ui/Sparkline.tsx": `import React from "react";
 
 interface SparklineProps {
   data: number[];
@@ -149,14 +148,16 @@ export function Sparkline({ data, color = "#6366F1", height = 40, width = 120 }:
     .map((val, idx) => {
       const x = (idx / (data.length - 1)) * width;
       const y = height - ((val - min) / range) * (height - 8) - 4;
-      return \`\${x},\${y}\`;
+      return x + "," + y;
     })
     .join(" ");
+
+  const gradId = "grad-" + color.replace("#", "");
 
   return (
     <svg width={width} height={height} className="overflow-visible">
       <defs>
-        <linearGradient id={\`grad-\${color.replace("#", "")}\`} x1="0" y1="0" x2="0" y2="1">
+        <linearGradient id={gradId} x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor={color} stopOpacity="0.4" />
           <stop offset="100%" stopColor={color} stopOpacity="0.0" />
         </linearGradient>
@@ -167,8 +168,7 @@ export function Sparkline({ data, color = "#6366F1", height = 40, width = 120 }:
 }
 `,
 
-  "src/components/ui/MetricCard.tsx": `
-import React from "react";
+  "src/components/ui/MetricCard.tsx": `import React from "react";
 import { GlassCard } from "./GlassCard";
 import { Sparkline } from "./Sparkline";
 
@@ -200,11 +200,11 @@ export function MetricCard({
             <span className="text-3xl font-black text-white tracking-tight">{value}</span>
             {change && (
               <span
-                className={\`text-xs font-bold px-2 py-0.5 rounded-full border \${
+                className={"text-xs font-bold px-2 py-0.5 rounded-full border " + (
                   isPositive
                     ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-400"
                     : "bg-rose-500/10 border-rose-500/30 text-rose-400"
-                }\`}
+                )}
               >
                 {isPositive ? "?" : "?"} {change}
               </span>
@@ -221,8 +221,7 @@ export function MetricCard({
 }
 `,
 
-  "src/components/ui/Button.tsx": `
-import React from "react";
+  "src/components/ui/Button.tsx": `import React from "react";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "secondary" | "glass" | "danger";
@@ -254,15 +253,14 @@ export function Button({
   };
 
   return (
-    <button className={\`\${base} \${sizeStyles[size]} \${variantStyles[variant]} \${className}\`} {...props}>
+    <button className={base + " " + sizeStyles[size] + " " + variantStyles[variant] + " " + className} {...props}>
       {children}
     </button>
   );
 }
 `,
 
-  "src/components/ui/Badge.tsx": `
-import React from "react";
+  "src/components/ui/Badge.tsx": `import React from "react";
 
 interface BadgeProps {
   children: React.ReactNode;
@@ -271,12 +269,15 @@ interface BadgeProps {
 }
 
 export function Badge({ children, color = "#6366F1", variant = "outline" }: BadgeProps) {
+  const bg = variant === "solid" ? color + "30" : "rgba(255, 255, 255, 0.03)";
+  const border = color + "40";
+
   return (
     <span
       className="inline-flex items-center text-[10px] font-semibold px-2.5 py-0.5 rounded-full border transition-all"
       style={{
-        backgroundColor: variant === "solid" ? `${color}30` : "rgba(255, 255, 255, 0.03)",
-        borderColor: `${color}40`,
+        backgroundColor: bg,
+        borderColor: border,
         color: "#F3F4F6",
       }}
     >
@@ -286,8 +287,7 @@ export function Badge({ children, color = "#6366F1", variant = "outline" }: Badg
 }
 `,
 
-  "src/app/app/design-system/page.tsx": `
-"use client";
+  "src/app/app/design-system/page.tsx": `"use client";
 
 import { AppShell } from "@/components/layout/AppShell";
 import { GlassCard } from "@/components/ui/GlassCard";
@@ -295,8 +295,6 @@ import { MetricCard } from "@/components/ui/MetricCard";
 import { StatusIndicator } from "@/components/ui/StatusIndicator";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
-import { Sparkline } from "@/components/ui/Sparkline";
-import { Terminal, Sparkles, Layers, Shield, Zap } from "lucide-react";
 
 export default function DesignSystemPage() {
   return (
@@ -304,7 +302,7 @@ export default function DesignSystemPage() {
       <div className="max-w-6xl mx-auto space-y-10">
         <div>
           <h1 className="text-3xl font-extrabold text-white flex items-center gap-3">
-            Design System Showcase <Sparkles className="w-6 h-6 text-indigo-400" />
+            Design System Showcase
           </h1>
           <p className="text-xs text-gray-400 mt-1">
             Dark Glassmorphism primitives for ProjectPulse command center.

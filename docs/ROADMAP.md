@@ -1,3 +1,15 @@
-# ProjectPulse — Roadmap
+# ProjectPulse ï¿½ 10-Phase Master Roadmap
 
-Phases 0 through 16: Foundation, Design System, Dashboard, Telemetry, Analytics, Health, Incidents, Errors, Deployments, SDK, Tasks, AI, Security, Polish.
+| Phase | Build | Status |
+| :--- | :--- | :--- |
+| **0** | Architecture + product specification | **COMPLETED** |
+| **1** | **Design system + app foundation** | **COMPLETED** |
+| **2** | Landing page + authentication | UP NEXT |
+| **3** | Projects + main dashboard | UPCOMING |
+| **4** | Telemetry + analytics | UPCOMING |
+| **5** | Health monitoring + incidents | UPCOMING |
+| **6** | Error tracking + deployments | UPCOMING |
+| **7** | SDK + integrations | UPCOMING |
+| **8** | Tasks + releases + ideas | UPCOMING |
+| **9** | AI Copilot + AI insights | UPCOMING |
+| **10** | Security, performance, polish + production | UPCOMING |
