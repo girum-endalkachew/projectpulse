@@ -1,4 +1,138 @@
-"use client";
+const fs = require('fs');
+const path = require('path');
+
+function ensureDir(filePath) {
+  const dirname = path.dirname(filePath);
+  if (!fs.existsSync(dirname)) {
+    fs.mkdirSync(dirname, { recursive: true });
+  }
+}
+
+const files = {
+  // 1. FIX THE BUILD ERROR (Add missing imports)
+  "src/lib/telemetry-store.ts": `import { TelemetryEvent, AnalyticsSummary, TimeframeOption, UserSessionRecord, TimeSeriesPoint, RouteAnalytics, FeatureUsage } from "@/types/telemetry";
+
+let eventsStore: TelemetryEvent[] = [
+  { id: "evt_1", projectId: "proj_aca_1", projectName: "ACA Academy", eventType: "page_view", distinctId: "usr_88", sessionId: "sess_102", route: "/dashboard", durationMs: 42, timestamp: new Date().toISOString() },
+];
+const mockUsers: UserSessionRecord[] = [];
+
+export function ingestTelemetryEvent(event: Partial<TelemetryEvent>): TelemetryEvent {
+  const newEvt = { id: "evt_" + Date.now(), projectId: event.projectId || "unk", projectName: event.projectName || "Unk", eventType: event.eventType || "custom_event", distinctId: event.distinctId || "anon", sessionId: event.sessionId || "s1", timestamp: new Date().toISOString() };
+  eventsStore = [newEvt, ...eventsStore];
+  return newEvt;
+}
+export function getAnalyticsData(projectId?: string, timeframe: TimeframeOption = "30D"): AnalyticsSummary {
+  const selectedSeries: TimeSeriesPoint[] = [
+    { label: "W1", pageViews: 24500, activeUsers: 3400, apiRequests: 88000 },
+    { label: "W2", pageViews: 28900, activeUsers: 4100, apiRequests: 104000 }
+  ];
+  const topRoutes: RouteAnalytics[] = [
+    { route: "/api/v1/extract", hits: 48210, avgLatencyMs: 184, errorPercentage: 1.4 }
+  ];
+  const featureUsage: FeatureUsage[] = [
+    { featureName: "AI Extractor", usageCount: 14200, uniqueUsers: 842, trendPercentage: 18 }
+  ];
+  return { timeframe, totalPageViews: 120400, totalApiRequests: 442000, dau: 4688, wau: 18420, mau: 48900, avgSessionDurationMin: 14.8, timeSeries: selectedSeries, topRoutes, featureUsage };
+}
+export function getUserSessionRecords(): UserSessionRecord[] { return mockUsers; }
+`,
+
+  // 2. CINEMATIC GLOBAL CSS
+  "src/app/globals.css": `@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-[#030303] text-[#F3F4F6] overflow-x-hidden;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-image: 
+      radial-gradient(circle at 15% 30%, rgba(68, 53, 62, 0.15), transparent 40%),
+      radial-gradient(circle at 85% 70%, rgba(45, 55, 72, 0.15), transparent 40%);
+    background-attachment: fixed;
+  }
+}
+
+@layer components {
+  .glass-base {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-left: 1px solid rgba(255, 255, 255, 0.06);
+    border-right: 1px solid rgba(255, 255, 255, 0.02);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.01);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+  
+  .glass-subtle {
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+  }
+
+  .editorial-heading {
+    @apply text-5xl md:text-7xl font-thin tracking-tighter leading-none text-white/95;
+  }
+
+  .editorial-label {
+    @apply text-[9px] md:text-[10px] tracking-[0.25em] uppercase text-gray-500 font-medium;
+  }
+}
+
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
+`,
+
+  // 3. EDITORIAL GLASS CARD
+  "src/components/ui/GlassCard.tsx": `import React from "react";
+
+interface GlassCardProps extends React.HTMLAttributes<HTMLDivElement> {
+  level?: 1 | 2 | 3;
+  children: React.ReactNode;
+  className?: string;
+}
+
+export function GlassCard({ level = 2, children, className = "", ...props }: GlassCardProps) {
+  const styles = {
+    1: "glass-subtle rounded-2xl",
+    2: "glass-base rounded-[2rem]",
+    3: "glass-base rounded-[2.5rem] shadow-[0_50px_100px_rgba(0,0,0,0.6)]",
+  };
+  return (
+    <div className={styles[level] + " relative overflow-hidden " + className} {...props}>
+      {children}
+    </div>
+  );
+}
+`,
+
+  // 4. AMBIENT APP SHELL
+  "src/components/layout/AppShell.tsx": `"use client";
+import { Sidebar } from "./Sidebar";
+import { Topbar } from "./Topbar";
+
+export function AppShell({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="min-h-screen bg-[#030303] text-gray-100 flex relative selection:bg-white/20 selection:text-white">
+      {/* Cinematic Studio Lighting */}
+      <div className="fixed top-[-20%] left-[-10%] w-[60vw] h-[60vh] bg-rose-900/10 rounded-full blur-[180px] pointer-events-none mix-blend-screen"></div>
+      <div className="fixed bottom-[-20%] right-[-10%] w-[60vw] h-[60vh] bg-slate-800/20 rounded-full blur-[180px] pointer-events-none mix-blend-screen"></div>
+
+      <Sidebar />
+      <div className="flex-1 flex flex-col min-w-0 z-10">
+        <Topbar />
+        <main className="ml-64 p-10 flex-1 lg:px-16 lg:py-12">{children}</main>
+      </div>
+    </div>
+  );
+}
+`,
+
+  // 5. ASYMMETRIC, LAYERED COMMAND CENTER (THE NEW DASHBOARD)
+  "src/app/app/dashboard/page.tsx": `"use client";
 import { useEffect, useState } from "react";
 import { AppShell } from "@/components/layout/AppShell";
 import { GlassCard } from "@/components/ui/GlassCard";
@@ -117,3 +251,13 @@ export default function DashboardPage() {
     </AppShell>
   );
 }
+`
+};
+
+for (const [filePath, content] of Object.entries(files)) {
+  ensureDir(filePath);
+  fs.writeFileSync(filePath, content.trim(), 'utf8');
+  console.log(`Generated: ${filePath}`);
+}
+
+console.log('Cinematic Design Overhaul & Build Fix complete!');
