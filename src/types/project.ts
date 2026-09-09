@@ -14,6 +14,7 @@ export interface Project {
   uptimePercentage: number;
   latencyMs: number;
   activeUsers: number;
+  errorRate: number;
   accentColor: string;
   icon: string;
   techStack: string[];
@@ -29,4 +30,28 @@ export interface CreateProjectInput {
   environment: ProjectEnvironment;
   accentColor: string;
   techStack: string[];
+}
+
+export type AttentionSeverity = "CRITICAL" | "IMPORTANT" | "RECOMMENDED" | "OPPORTUNITY";
+
+export interface AttentionItem {
+  id: string;
+  projectId: string;
+  projectName: string;
+  severity: AttentionSeverity;
+  title: string;
+  description: string;
+  timestamp: string;
+  metric?: string;
+}
+
+export interface ActivityItem {
+  id: string;
+  projectId: string;
+  projectName: string;
+  accentColor: string;
+  type: "deployment" | "error" | "incident" | "health_check" | "feature";
+  title: string;
+  detail: string;
+  timestamp: string;
 }
