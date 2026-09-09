@@ -69,7 +69,7 @@ html, body {
 ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.15); border-radius: 9999px; }
 `,
 
-  // 2. CINEMATIC LANDING PAGE (SCENES 1-4)
+  // 2. CINEMATIC LANDING PAGE
   "src/app/page.tsx": `"use client";
 
 import Link from "next/link";
@@ -143,7 +143,7 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen bg-[#08080a] text-gray-100 flex flex-col relative selection:bg-amber-500/30 selection:text-amber-200 overflow-hidden">
       
-      {/* Background Warm Studio Lighting (Reference Environment) */}
+      {/* Background Warm Studio Lighting */}
       <div 
         className="fixed top-[-10%] left-1/2 -translate-x-1/2 w-[1000px] h-[500px] pointer-events-none rounded-full"
         style={{
@@ -222,11 +222,11 @@ export default function LandingPage() {
           </div>
         </div>
 
-        {/* Hero Product Visual (Layered Frosted Glass Composition matching visual reference) */}
+        {/* Hero Product Visual */}
         <div className="glass-workspace rounded-[2.5rem] p-6 lg:p-8 relative overflow-hidden">
           <div className="grid grid-cols-12 gap-6">
             
-            {/* Hero Main Panel (Span 7) */}
+            {/* Hero Main Panel */}
             <div className="col-span-12 lg:col-span-7 glass-panel rounded-[2rem] p-8 relative overflow-hidden flex flex-col justify-between min-h-[380px]">
               <div 
                 className="absolute top-[-30%] right-[-10%] w-[300px] h-[350px] rounded-full blur-[80px] pointer-events-none"
@@ -277,7 +277,7 @@ export default function LandingPage() {
               </div>
             </div>
 
-            {/* Hero Secondary Curve Panel (Span 5) */}
+            {/* Hero Secondary Curve Panel */}
             <div className="col-span-12 lg:col-span-5 flex flex-col gap-4">
               <div className="glass-panel rounded-[2rem] p-6 relative overflow-hidden flex-1 flex flex-col justify-between">
                 <div className="flex items-center justify-between">
@@ -327,7 +327,7 @@ export default function LandingPage() {
 
         <div className="grid grid-cols-12 gap-8">
           
-          {/* Left: Asymmetric Attention Stack (Span 5) */}
+          {/* Left: Asymmetric Attention Stack */}
           <div id="attention" className="col-span-12 lg:col-span-5 space-y-4">
             <div className="glass-panel rounded-3xl p-6 border-l-4 border-l-rose-500">
               <div className="flex items-center justify-between mb-2">
@@ -357,7 +357,7 @@ export default function LandingPage() {
             </div>
           </div>
 
-          {/* Right: Project Rows (Span 7) */}
+          {/* Right: Project Rows */}
           <div className="col-span-12 lg:col-span-7 glass-panel rounded-3xl p-6 space-y-4">
             <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">Active Production Applications</p>
 
@@ -366,7 +366,7 @@ export default function LandingPage() {
                 <div className="flex items-center gap-3">
                   <div 
                     className="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-white text-xs border border-white/10"
-                    style={{ backgroundColor: `${proj.accent}20` }}
+                    style={{ backgroundColor: proj.accent + "20" }}
                   >
                     <span style={{ color: proj.accent }}>{proj.name.charAt(0)}</span>
                   </div>
@@ -377,7 +377,7 @@ export default function LandingPage() {
                 </div>
 
                 <div className="flex items-center gap-2">
-                  <span className={`w-2 h-2 rounded-full ${proj.statusColor}`}></span>
+                  <span className={"w-2 h-2 rounded-full " + proj.statusColor}></span>
                   <span className="text-xs text-gray-300 font-semibold">{proj.users}</span>
                 </div>
 

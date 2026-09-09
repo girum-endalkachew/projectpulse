@@ -1,133 +1,376 @@
 "use client";
 
 import Link from "next/link";
-import { Terminal, ArrowRight, Sparkles, Activity, ShieldCheck, Zap, Globe, Layers } from "lucide-react";
+import {
+  Terminal,
+  ArrowRight,
+  Sparkles,
+  Activity,
+  ShieldAlert,
+  AlertTriangle,
+  TrendingUp,
+  Zap,
+  Globe,
+  GitBranch,
+  Layers,
+  ArrowUpRight,
+  CheckCircle2,
+  Clock,
+  MoreHorizontal
+} from "lucide-react";
+import { Sparkline } from "@/components/ui/Sparkline";
 
 export default function LandingPage() {
+  const projects = [
+    {
+      id: "proj_aca_1",
+      name: "ACA Academy",
+      category: "Education Platform",
+      status: "Operational",
+      statusColor: "bg-blue-400",
+      users: "1.28k active",
+      latency: "32ms",
+      sparkline: [20, 25, 30, 28, 45, 50, 65],
+      accent: "#3B82F6",
+    },
+    {
+      id: "proj_sift_2",
+      name: "Sift Intelligence",
+      category: "AI Content Filter",
+      status: "Degraded",
+      statusColor: "bg-pink-500",
+      users: "842 active",
+      latency: "184ms",
+      sparkline: [60, 55, 40, 30, 25, 18, 12],
+      accent: "#EC4899",
+    },
+    {
+      id: "proj_examguard_3",
+      name: "ExamGuard Proctoring",
+      category: "Exam Integrity Engine",
+      status: "Warning",
+      statusColor: "bg-purple-400",
+      users: "412 active",
+      latency: "340ms",
+      sparkline: [30, 32, 35, 38, 36, 42, 40],
+      accent: "#8B5CF6",
+    },
+    {
+      id: "proj_focusos_4",
+      name: "Focus OS",
+      category: "Productivity Engine",
+      status: "Operational",
+      statusColor: "bg-cyan-400",
+      users: "2.15k active",
+      latency: "18ms",
+      sparkline: [10, 25, 40, 55, 70, 85, 98],
+      accent: "#06B6D4",
+    },
+  ];
+
   return (
-    <div className="min-h-screen bg-[#08080a] text-gray-100 flex flex-col relative selection:bg-indigo-500 selection:text-white overflow-hidden">
-      {/* Background Studio Lighting */}
+    <div className="min-h-screen bg-[#08080a] text-gray-100 flex flex-col relative selection:bg-amber-500/30 selection:text-amber-200 overflow-hidden">
+      
+      {/* Background Warm Studio Lighting */}
       <div 
-        className="fixed top-[-10%] left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full blur-[140px] pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(168, 85, 247, 0.08) 50%, transparent 100%)" }}
+        className="fixed top-[-10%] left-1/2 -translate-x-1/2 w-[1000px] h-[500px] pointer-events-none rounded-full"
+        style={{
+          background: "radial-gradient(ellipse at center, rgba(180, 83, 9, 0.12) 0%, rgba(159, 18, 57, 0.08) 45%, transparent 70%)",
+          filter: "blur(120px)"
+        }}
       ></div>
 
-      {/* Top Bar */}
-      <header className="h-20 border-b border-white/10 backdrop-blur-xl bg-black/40 sticky top-0 z-50 flex items-center justify-between px-6 lg:px-16">
+      <div 
+        className="fixed bottom-[-10%] right-[-10%] w-[800px] h-[500px] pointer-events-none rounded-full"
+        style={{
+          background: "radial-gradient(circle at center, rgba(30, 58, 138, 0.12) 0%, transparent 60%)",
+          filter: "blur(140px)"
+        }}
+      ></div>
+
+      {/* Top Header */}
+      <header className="h-24 border-b border-white/10 backdrop-blur-2xl bg-black/40 sticky top-0 z-50 flex items-center justify-between px-6 lg:px-16">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-2xl bg-indigo-600/30 border border-indigo-500/40 flex items-center justify-center text-indigo-400 shadow-lg">
+          <div className="w-10 h-10 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-300 shadow-md">
             <Terminal className="w-5 h-5" />
           </div>
-          <span className="font-extrabold tracking-wider text-white text-lg">PROJECTPULSE</span>
+          <span className="font-extrabold tracking-widest text-white text-base">PROJECTPULSE</span>
         </div>
 
+        <nav className="hidden md:flex items-center gap-8 text-xs font-semibold tracking-wider text-gray-400 uppercase">
+          <a href="#ecosystem" className="hover:text-white transition-colors">Ecosystem</a>
+          <a href="#attention" className="hover:text-white transition-colors">Attention Engine</a>
+          <a href="#copilot" className="hover:text-white transition-colors">AI Intelligence</a>
+        </nav>
+
         <div className="flex items-center gap-4">
-          <Link href="/login" className="text-xs font-semibold text-gray-300 hover:text-white px-3 py-2 transition-colors">
-            Sign In
+          <Link href="/app/dashboard" className="text-xs font-semibold text-gray-300 hover:text-white px-3 py-2 transition-colors">
+            Explore the Command Center
           </Link>
           <Link
-            href="/app/dashboard"
-            className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold px-5 py-2.5 rounded-xl shadow-lg border border-indigo-400/30 transition-all"
+            href="/register"
+            className="flex items-center gap-2 bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-black text-xs font-bold px-5 py-2.5 rounded-xl shadow-[0_0_25px_rgba(245,158,11,0.25)] transition-all"
           >
-            Launch Command Center <ArrowRight className="w-3.5 h-3.5" />
+            Start Monitoring <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
       </header>
 
-      {/* Hero */}
-      <section className="pt-20 pb-16 px-6 lg:px-16 text-center max-w-5xl mx-auto relative z-10">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-pill text-indigo-300 text-xs font-semibold mb-8 border border-white/10">
-          <Sparkles className="w-3.5 h-3.5 text-amber-400" /> Developer Observability Platform v1.0
+      {/* SCENE 1: HERO WORKSPACE */}
+      <section className="pt-16 pb-24 px-6 lg:px-16 max-w-[1400px] mx-auto relative z-10">
+        
+        {/* Editorial Headline */}
+        <div className="max-w-3xl mb-12">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-pill text-amber-300 text-xs font-semibold mb-6 border border-amber-500/20">
+            <Sparkles className="w-3.5 h-3.5 text-amber-400" /> Developer Observability & Command Center
+          </div>
+
+          <h1 className="text-5xl sm:text-7xl font-light tracking-tight text-white leading-[1.05] mb-6">
+            Everything you build. <br />
+            <span className="text-gray-400 font-normal">One command center.</span>
+          </h1>
+
+          <p className="text-sm sm:text-base text-gray-400 font-normal leading-relaxed max-w-xl mb-8">
+            ProjectPulse unifies project health, active users, uptime metrics, error tracking, and AI insights across all your production software applications into a single glass environment.
+          </p>
+
+          <div className="flex flex-col sm:flex-row items-center gap-4">
+            <Link
+              href="/register"
+              className="w-full sm:w-auto flex items-center justify-center gap-2.5 bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-black text-sm font-bold px-8 py-3.5 rounded-2xl shadow-[0_0_35px_rgba(245,158,11,0.3)] transition-all"
+            >
+              Start Monitoring <ArrowRight className="w-4 h-4" />
+            </Link>
+            <Link
+              href="/app/dashboard"
+              className="w-full sm:w-auto flex items-center justify-center gap-2 glass-pill hover:bg-white/10 text-white text-sm font-semibold px-8 py-3.5 rounded-2xl transition-all"
+            >
+              Explore the Command Center
+            </Link>
+          </div>
         </div>
 
-        <h1 className="text-4xl sm:text-6xl font-black text-white tracking-tight leading-[1.15] mb-6">
-          Everything you build. <br />
-          <span className="bg-gradient-to-r from-indigo-400 via-purple-300 to-cyan-400 bg-clip-text text-transparent">
-            One command center.
-          </span>
-        </h1>
+        {/* Hero Product Visual */}
+        <div className="glass-workspace rounded-[2.5rem] p-6 lg:p-8 relative overflow-hidden">
+          <div className="grid grid-cols-12 gap-6">
+            
+            {/* Hero Main Panel */}
+            <div className="col-span-12 lg:col-span-7 glass-panel rounded-[2rem] p-8 relative overflow-hidden flex flex-col justify-between min-h-[380px]">
+              <div 
+                className="absolute top-[-30%] right-[-10%] w-[300px] h-[350px] rounded-full blur-[80px] pointer-events-none"
+                style={{ background: "radial-gradient(circle, rgba(245, 158, 11, 0.25) 0%, rgba(225, 29, 72, 0.1) 50%, transparent 100%)" }}
+              ></div>
 
-        <p className="text-sm sm:text-base text-gray-400 max-w-2xl mx-auto leading-relaxed mb-10">
-          ProjectPulse unifies project health, uptime monitoring, latency analytics, error tracking, and AI insights across all your production applications.
-        </p>
+              <div>
+                <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2 block">Developer Solution</span>
+                <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white leading-tight">
+                  Optimize <br /> Your Metrics
+                </h2>
+                <div className="mt-6">
+                  <Link href="/app/dashboard" className="inline-flex items-center gap-2 bg-white text-black text-xs font-bold px-5 py-2.5 rounded-full hover:bg-gray-200 transition-colors shadow-lg">
+                    Start Now
+                  </Link>
+                </div>
+              </div>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-          <Link
-            href="/app/dashboard"
-            className="w-full sm:w-auto flex items-center justify-center gap-2.5 bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-bold px-8 py-3.5 rounded-2xl shadow-xl border border-indigo-400/40 transition-all"
-          >
-            Open Live Dashboard <ArrowRight className="w-4 h-4" />
-          </Link>
+              {/* Overlapping Translucent Frosted Glass Strip */}
+              <div className="glass-overlay-bar rounded-2xl p-4 mt-8 relative z-10 flex items-center justify-between gap-2 overflow-x-auto">
+                <div className="px-3 border-r border-white/10">
+                  <p className="text-xl font-bold text-white">1,284</p>
+                  <p className="text-[10px] text-blue-400 font-semibold flex items-center gap-1 mt-0.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-400"></span> Users
+                  </p>
+                </div>
+                <div className="px-3 border-r border-white/10">
+                  <p className="text-xl font-bold text-white">99.98%</p>
+                  <p className="text-[10px] text-emerald-400 font-semibold flex items-center gap-1 mt-0.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Uptime
+                  </p>
+                </div>
+                <div className="px-3 border-r border-white/10">
+                  <p className="text-xl font-bold text-white">32ms</p>
+                  <p className="text-[10px] text-indigo-300 font-semibold flex items-center gap-1 mt-0.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-indigo-300"></span> Latency
+                  </p>
+                </div>
+                <div className="px-3">
+                  <p className="text-xl font-bold text-white">0</p>
+                  <p className="text-[10px] text-amber-400 font-semibold flex items-center gap-1 mt-0.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-amber-400"></span> Incidents
+                  </p>
+                </div>
+                <div className="w-9 h-9 rounded-full bg-black/60 border border-white/20 flex items-center justify-center text-white shrink-0 ml-2">
+                  <ArrowRight className="w-4 h-4" />
+                </div>
+              </div>
+            </div>
+
+            {/* Hero Secondary Curve Panel */}
+            <div className="col-span-12 lg:col-span-5 flex flex-col gap-4">
+              <div className="glass-panel rounded-[2rem] p-6 relative overflow-hidden flex-1 flex flex-col justify-between">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-xs font-semibold text-gray-300 flex items-center gap-2">
+                    Active Users right now <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                  </h3>
+                </div>
+
+                <div className="relative my-3">
+                  <svg viewBox="0 0 300 110" className="w-full h-24 overflow-visible">
+                    <path d="M 0,80 Q 50,20 100,70 T 200,30 T 300,90" fill="none" stroke="#F59E0B" strokeWidth="3" />
+                    <path d="M 0,100 Q 60,50 120,90 T 220,10 T 300,60" fill="none" stroke="rgba(255,255,255,0.25)" strokeWidth="2" strokeDasharray="4 4" />
+                    <circle cx="220" cy="10" r="5" fill="#F59E0B" />
+                    <g transform="translate(205, -20)">
+                      <rect width="30" height="20" rx="10" fill="#000" />
+                      <text x="15" y="13" textAnchor="middle" fill="#fff" fontSize="10" fontWeight="bold">50</text>
+                    </g>
+                  </svg>
+                  <div className="flex justify-between text-[10px] text-gray-500 font-semibold mt-1">
+                    <span>Oct</span>
+                    <span>Mar</span>
+                    <span>Jul</span>
+                    <span>Aug</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="glass-panel rounded-[2rem] p-5 flex items-center justify-between">
+                <div>
+                  <p className="text-[10px] text-gray-400 uppercase font-semibold">Overall Ecosystem Health</p>
+                  <p className="text-2xl font-extrabold text-white mt-0.5">98.4 <span className="text-xs font-semibold text-emerald-400">? 6%</span></p>
+                </div>
+                <Sparkline data={[20, 30, 25, 40, 35, 50, 60]} color="#10B981" width={90} height={32} />
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* SCENE 2: LIVING ECOSYSTEM & ATTENTION ENGINE */}
+      <section id="ecosystem" className="py-20 px-6 lg:px-16 max-w-[1400px] mx-auto border-t border-white/10">
+        <div className="mb-12">
+          <span className="text-[10px] font-bold tracking-[0.2em] text-gray-500 uppercase block mb-2">Live Observability</span>
+          <h2 className="text-3xl sm:text-4xl font-light text-white">Monitored Software Ecosystem</h2>
+        </div>
+
+        <div className="grid grid-cols-12 gap-8">
+          
+          {/* Left: Asymmetric Attention Stack */}
+          <div id="attention" className="col-span-12 lg:col-span-5 space-y-4">
+            <div className="glass-panel rounded-3xl p-6 border-l-4 border-l-rose-500">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-[10px] font-bold text-rose-400 uppercase tracking-widest">Critical Alert</span>
+                <span className="text-[10px] text-gray-500">12 mins ago</span>
+              </div>
+              <h3 className="text-base font-bold text-white mb-1">ExamGuard High Relay Latency</h3>
+              <p className="text-xs text-gray-400 leading-relaxed">WebRTC proctoring stream exceeding 340ms baseline on US-East node.</p>
+            </div>
+
+            <div className="glass-panel rounded-3xl p-6 border-l-4 border-l-amber-500">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-[10px] font-bold text-amber-400 uppercase tracking-widest">Important Warning</span>
+                <span className="text-[10px] text-gray-500">45 mins ago</span>
+              </div>
+              <h3 className="text-base font-bold text-white mb-1">Sift Document Extractor Exception</h3>
+              <p className="text-xs text-gray-400 leading-relaxed">TypeError occurrences increased +18% on large PDF buffer parsing.</p>
+            </div>
+
+            <div className="glass-panel rounded-3xl p-6 border-l-4 border-l-cyan-500">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-[10px] font-bold text-cyan-400 uppercase tracking-widest">Growth Opportunity</span>
+                <span className="text-[10px] text-gray-500">2 hours ago</span>
+              </div>
+              <h3 className="text-base font-bold text-white mb-1">Focus OS Session Surge</h3>
+              <p className="text-xs text-gray-400 leading-relaxed">Daily active sessions up +42% following v2.4 desktop release.</p>
+            </div>
+          </div>
+
+          {/* Right: Project Rows */}
+          <div className="col-span-12 lg:col-span-7 glass-panel rounded-3xl p-6 space-y-4">
+            <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">Active Production Applications</p>
+
+            {projects.map((proj) => (
+              <div key={proj.id} className="glass-panel rounded-2xl p-4 flex items-center justify-between gap-4 hover:bg-white/[0.04] transition-all">
+                <div className="flex items-center gap-3">
+                  <div 
+                    className="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-white text-xs border border-white/10"
+                    style={{ backgroundColor: proj.accent + "20" }}
+                  >
+                    <span style={{ color: proj.accent }}>{proj.name.charAt(0)}</span>
+                  </div>
+                  <div>
+                    <h4 className="text-xs font-bold text-white">{proj.name}</h4>
+                    <p className="text-[10px] text-gray-400">{proj.category}</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <span className={"w-2 h-2 rounded-full " + proj.statusColor}></span>
+                  <span className="text-xs text-gray-300 font-semibold">{proj.users}</span>
+                </div>
+
+                <div className="text-xs text-gray-300 font-mono font-medium">
+                  {proj.latency}
+                </div>
+
+                <Sparkline data={proj.sparkline} color={proj.accent} width={80} height={24} />
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* SCENE 3: AI COPILOT INTELLIGENCE */}
+      <section id="copilot" className="py-20 px-6 lg:px-16 max-w-[1400px] mx-auto border-t border-white/10">
+        <div className="glass-workspace rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden">
+          <div className="max-w-2xl mb-8">
+            <span className="text-[10px] font-bold tracking-widest text-amber-400 uppercase block mb-2">ProjectPulse AI</span>
+            <h2 className="text-3xl sm:text-4xl font-light text-white mb-4">
+              Your projects have something to tell you.
+            </h2>
+            <p className="text-xs text-gray-400 leading-relaxed">
+              The AI Copilot executes deterministic function tools directly against PostgreSQL telemetry without hallucinating fake numbers.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="glass-panel rounded-2xl p-5 border border-white/10">
+              <p className="text-[10px] text-gray-400 uppercase font-semibold mb-2">User Query</p>
+              <p className="text-xs font-semibold text-white">&quot;What needs my attention today across all apps?&quot;</p>
+            </div>
+
+            <div className="glass-panel rounded-2xl p-5 border border-amber-500/30 bg-amber-500/5">
+              <p className="text-[10px] text-amber-400 uppercase font-bold mb-2">AI Response (Data-Grounded)</p>
+              <p className="text-xs text-gray-300 leading-relaxed">
+                1. <strong className="text-white">ExamGuard</strong> API latency is 34% above baseline (340ms). <br />
+                2. <strong className="text-white">Sift</strong> error rate increased +18% in the last 2 hours. <br />
+                3. <strong className="text-white">ACA Academy</strong> has no production build in 8 days.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SCENE 4: TERMINAL FOOTER */}
+      <footer className="mt-auto border-t border-white/10 py-16 px-6 lg:px-16 text-center relative z-10">
+        <div className="max-w-xl mx-auto space-y-6">
+          <h2 className="text-4xl font-light text-white tracking-tight">100% Visibility.</h2>
+          <p className="text-xs text-gray-400">Ready to monitor your entire software ecosystem from one command center?</p>
+
           <Link
             href="/register"
-            className="w-full sm:w-auto flex items-center justify-center gap-2 glass-pill hover:bg-white/10 text-white text-sm font-semibold px-8 py-3.5 rounded-2xl transition-all"
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-black text-xs font-bold px-8 py-3.5 rounded-2xl shadow-[0_0_30px_rgba(245,158,11,0.3)] transition-all"
           >
-            Create Account
+            Start Monitoring <ArrowRight className="w-4 h-4" />
           </Link>
-        </div>
 
-        {/* Hero Preview Card */}
-        <div className="glass-workspace rounded-[2.5rem] p-6 text-left relative overflow-hidden">
-          <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-6">
-            <div className="flex items-center gap-2">
-              <span className="w-3 h-3 rounded-full bg-rose-500/80"></span>
-              <span className="w-3 h-3 rounded-full bg-amber-500/80"></span>
-              <span className="w-3 h-3 rounded-full bg-emerald-500/80"></span>
-              <span className="text-xs text-gray-400 ml-2 font-mono">projectpulse.dev / command-center</span>
-            </div>
-            <span className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
-              ? All Systems Operational
-            </span>
-          </div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-            <div className="glass-panel p-4 rounded-2xl">
-              <p className="text-[10px] text-gray-400 uppercase font-semibold">Active Apps</p>
-              <p className="text-xl font-bold text-white mt-1">4 Managed</p>
-            </div>
-            <div className="glass-panel p-4 rounded-2xl">
-              <p className="text-[10px] text-gray-400 uppercase font-semibold">Global Uptime</p>
-              <p className="text-xl font-bold text-emerald-400 mt-1">99.98%</p>
-            </div>
-            <div className="glass-panel p-4 rounded-2xl">
-              <p className="text-[10px] text-gray-400 uppercase font-semibold">Live Users</p>
-              <p className="text-xl font-bold text-cyan-300 mt-1">4,688 Active</p>
-            </div>
-            <div className="glass-panel p-4 rounded-2xl">
-              <p className="text-[10px] text-gray-400 uppercase font-semibold">Avg Latency</p>
-              <p className="text-xl font-bold text-indigo-300 mt-1">32ms Baseline</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Monitored Products Strip */}
-      <section className="py-12 border-y border-white/10 bg-white/[0.01]">
-        <div className="max-w-6xl mx-auto px-6 text-center">
-          <p className="text-xs font-semibold text-gray-500 uppercase tracking-widest mb-6">
-            Monitored Applications Ecosystem
+          <p className="text-[11px] text-gray-500 pt-8 border-t border-white/5">
+            ProjectPulse Command Center � Engineered by Girum Endalkachew
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-12">
-            <span className="text-xs font-bold text-gray-300 flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-blue-500"></span> ACA Academy
-            </span>
-            <span className="text-xs font-bold text-gray-300 flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-pink-500"></span> Sift Platform
-            </span>
-            <span className="text-xs font-bold text-gray-300 flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-purple-500"></span> ExamGuard
-            </span>
-            <span className="text-xs font-bold text-gray-300 flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-cyan-500"></span> Focus OS
-            </span>
-          </div>
         </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="mt-auto border-t border-white/10 py-8 px-6 text-center text-xs text-gray-500">
-        ProjectPulse � Built by Girum Endalkachew
       </footer>
+
     </div>
   );
 }
