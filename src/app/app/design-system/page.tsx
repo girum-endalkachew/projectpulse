@@ -20,7 +20,6 @@ export default function DesignSystemPage() {
           </p>
         </div>
 
-        {/* Status Indicators Section */}
         <section className="space-y-4">
           <h2 className="text-sm font-bold text-gray-300 uppercase tracking-wider">1. Status Indicators</h2>
           <div className="flex flex-wrap gap-4 glass-panel-2 p-6 rounded-3xl">
@@ -32,7 +31,6 @@ export default function DesignSystemPage() {
           </div>
         </section>
 
-        {/* Metric Cards Section */}
         <section className="space-y-4">
           <h2 className="text-sm font-bold text-gray-300 uppercase tracking-wider">2. Metric Cards with Inline Sparklines</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -66,7 +64,6 @@ export default function DesignSystemPage() {
           </div>
         </section>
 
-        {/* Glass Levels Section */}
         <section className="space-y-4">
           <h2 className="text-sm font-bold text-gray-300 uppercase tracking-wider">3. Glass Levels Hierarchy</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -85,7 +82,6 @@ export default function DesignSystemPage() {
           </div>
         </section>
 
-        {/* Button Variants Section */}
         <section className="space-y-4">
           <h2 className="text-sm font-bold text-gray-300 uppercase tracking-wider">4. Buttons & Badges</h2>
           <div className="flex flex-wrap items-center gap-4 glass-panel-2 p-6 rounded-3xl">
